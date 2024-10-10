@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv"
 import fs from "fs"
 const app = express()
-const allowedOrigins = ["http://localhost:3000"]
+const allowedOrigins = ["http://localhost:3000","https://magic-board-frontend.vercel.app/"]
 app.use(cors({
     origin:allowedOrigins,
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
