@@ -4,7 +4,11 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv"
 import fs from "fs"
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin:"https://magic-board-frontend.vercel.app/",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+}))
 const PORT = 5000
 app.use(express.json({ limit: '10mb' }));
 dotenv.config()
