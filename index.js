@@ -13,7 +13,7 @@ app.use(cors({
 const PORT = 5000
 app.use(express.json({ limit: '10mb' }));
 dotenv.config()
-async function generate() {
+async function generate(imageBase64) {
     try {
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -31,9 +31,10 @@ async function generate() {
         
         const image = {
             inlineData: {
-                data: Buffer.from(fs.readFileSync("download.png")).toString("base64"),
-                mimeType:"image/jpeg",
+                data: imageBase64,
+                mimeType: "image/png",
             },
+          
         };   
         const result = await model.generateContent([prompt, image]);
         return result.response.text()
@@ -46,8 +47,7 @@ app.post('/solve',async (req,res)=>{
    if(image){
     try {
         const base64Data = image.replace(/^data:image\/png;base64,/, "");
-        fs.writeFileSync("download.png", base64Data, { encoding: 'base64' });
-        const Answer = await generate() 
+        const Answer = await generate(base64Data) 
         console.log(Answer)
         if (Answer){
             return res.json({ success: true, answer: Answer });
