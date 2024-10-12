@@ -21,14 +21,20 @@ async function generate(imageBase64) {
         const prompt = `
         Please perform the following tasks:
     
-        1. If the input contains a mathematical expression or equation, solve it:
+        1. **Mathematical Expressions:**
+           - If the input contains a mathematical expression or equation, solve it.
            - Provide a detailed, step-by-step solution.
-           - Include the final answer, clearly labeled.
+           - Clearly label the final answer.
     
-        2. If the input does not contain a mathematical expression or equation, describe what it resembles or provide relevant insights about it.
+        2. **Non-Mathematical Inputs:**
+           - If the input does not contain a mathematical expression or equation, describe its nature or provide relevant insights about it.
     
-        Ensure to have output in your response.
+        3. **Greetings:**
+           - If the input contains greetings such as "Hi," "Hello," "Good Morning," or "Good Night," respond with a warm greeting back don't include emojis for it.
+    
+        Ensure to provide clear output in your response.
     `;
+    
         
         const image = {
             inlineData: {
