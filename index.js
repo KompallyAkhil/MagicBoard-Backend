@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 import fs from "fs"
 const app = express()
 app.options('*', cors());
-const allowedOrigins = ["http://localhost:3000","https://magic-board-frontend.vercel.app"]
+const allowedOrigins = ["http://localhost:3000","http://localhost:5173","https://magic-board-frontend.vercel.app","https://magic-board-chi.vercel.app/"]
 app.use(cors({
     origin:allowedOrigins,
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
@@ -46,7 +46,7 @@ async function generate(imageBase64) {
         const result = await model.generateContent([prompt, image]);
         return result.response.text()
     } catch (error) {
-        return 
+        return
     }
 }
 app.post('/solve',async (req,res)=>{
@@ -54,10 +54,9 @@ app.post('/solve',async (req,res)=>{
    if(image){
     try {
         const base64Data = image.replace(/^data:image\/png;base64,/, "");
-        const Answer = await generate(base64Data) 
-        console.log(Answer)
-        if (Answer){
-            return res.json({ success: true, answer: Answer });
+        const answer = await generate(base64Data) 
+        if (answer){
+            return res.json({ success: true, answer: answer });
         }
         else{
             return res.json({ success: false, error: "Failed to generate answer." });
