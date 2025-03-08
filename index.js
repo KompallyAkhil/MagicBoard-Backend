@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 import fs from "fs"
 const app = express()
 app.options('*', cors());
-const allowedOrigins = ["http://localhost:3000","http://localhost:5173","https://magic-board-frontend.vercel.app","https://magic-board-chi.vercel.app/"]
+const allowedOrigins = ["http://localhost:3000","http://localhost:5173","https://magic-board-frontend.vercel.app","https://magic-board-chi.vercel.app"]
 app.use(cors({
     origin:allowedOrigins,
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
