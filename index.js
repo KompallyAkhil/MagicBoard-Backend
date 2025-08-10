@@ -9,7 +9,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://magic-board-frontend.vercel.app",
   "https://magic-board-chi.vercel.app",
-  "https://magicboard.akhilkompally.app/"
+  "https://magicboard.akhilkompally.app"
 ];
 app.use(
   cors({
