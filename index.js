@@ -119,7 +119,7 @@ app.post("/generate-image-prompt", async (req, res) => {
 
     // Generate image using Stability AI API (Core model - cheaper)
     const stabilityResponse = await axios.post(
-      "https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image",
+      "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
       {
         text_prompts: [
           {
