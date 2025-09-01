@@ -117,9 +117,9 @@ app.post("/generate-image-prompt", async (req, res) => {
     // Analyze the drawing and enhance the prompt using Gemini
     const enhancedPrompt = await analyzeDrawingForPrompt(base64Data, prompt);
 
-    // Generate image using Stability AI API
+    // Generate image using Stability AI API (Core model - cheaper)
     const stabilityResponse = await axios.post(
-      "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
+      "https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image",
       {
         text_prompts: [
           {
@@ -128,10 +128,10 @@ app.post("/generate-image-prompt", async (req, res) => {
           },
         ],
         cfg_scale: 7,
-        height: 1024,
-        width: 1024,
+        height: 512,
+        width: 512,
         samples: 1,
-        steps: 30,
+        steps: 20,
       },
       {
         headers: {
