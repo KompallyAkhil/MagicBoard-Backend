@@ -7,7 +7,7 @@ const router = express.Router();
 
 async function generate(imageBase64) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const prompt =
       `You are given an image containing a mathematical expression, equation, drawing, or graph that represents a math problem. ` +
@@ -30,6 +30,7 @@ async function generate(imageBase64) {
     const result = await model.generateContent([prompt, image]);
     return result.response.text();
   } catch (error) {
+    console.error("Error generating math solution:", error);
     return;
   }
 }

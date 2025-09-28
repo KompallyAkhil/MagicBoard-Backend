@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import solveRoutes from "./routes/solve.js"
 import imageRoutes from "./routes/image.js";
-import { apiLimiter, imageGenerationLimiter } from "./middleware/rateLimiter.js";
 
 dotenv.config();
 
@@ -30,11 +29,9 @@ app.use(
   })
 );
 
-// Apply rate limiting
-app.use(apiLimiter); 
 
 app.use("/solve", solveRoutes);
-app.use("/generate-image-prompt", imageGenerationLimiter, imageRoutes); 
+app.use("/generate-image-prompt", imageRoutes); 
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
