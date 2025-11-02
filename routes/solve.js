@@ -9,16 +9,24 @@ async function generate(imageBase64) {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-    const prompt =
-      `You are given an image containing a mathematical expression, equation, drawing, or graph that represents a math problem. ` +
-      `Your first task is to clearly identify and describe what the image contains (e.g., an algebraic equation, a geometric figure, a plotted graph, etc.). ` +
-      `Then, interpret and solve the problem shown in the image. ` +
-      `Follow the PEMDAS rule strictly: Parentheses, Exponents, Multiplication and Division (from left to right), Addition and Subtraction (from left to right). ` +
-      `Please explain the steps involved in solving the problem briefly, and then clearly state the final answer at the end. ` +
-      `For example:\n` +
-      `Q: 2 + 3 * 4 => First, multiply 3 * 4 = 12. Then add 2 + 12 = 14. Final Answer: 14\n` +
-      `Q: 2 + 3 + 5 * 4 - 8 / 2 => Multiply 5 * 4 = 20, divide 8 / 2 = 4, then compute 2 + 3 = 5, 5 + 20 = 25, 25 - 4 = 21. Final Answer: 21\n` +
-      `Avoid using code blocks, markdown, JSON, or special characters. Just describe the image, explain the solution steps, and then clearly state the final answer.`;
+    const prompt = `
+          You are a visual understanding assistant. You will receive an image that may contain any type of content — such as text, handwriting, equations, diagrams, graphs, objects, or real-world scenes.
+
+          Your goal is to:
+          1. Quickly identify what the image represents.
+          2. Perform the most relevant and useful task based on that content:
+            - If it has text (printed or handwritten) → Extract and return the text directly.
+            - If it’s a math expression, formula, or equation → Interpret and solve it step-by-step.
+            - If it’s a diagram, graph, or table → Explain what it shows and summarize key information.
+            - If it’s a document or form → Summarize its main points or purpose.
+            - If it’s a real-world photo or object → Describe it briefly and clearly.
+          3. Do **not** describe that the image “contains” or “shows” something. 
+            Just give the final meaningful result (text, answer, summary, or description).
+
+          Keep the response:
+          - In plain text
+          - Concise, clear, and focused on the useful output
+          - Without code blocks, markdown, or unnecessary formatting`;
 
     const image = {
       inlineData: {

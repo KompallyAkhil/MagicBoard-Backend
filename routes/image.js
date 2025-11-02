@@ -8,7 +8,7 @@ const router = express.Router();
 // Step 1: Enhance prompt from drawing
 async function analyzeDrawingForPrompt(imageBase64, userPrompt) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const analysisPrompt = `Analyze this drawing and combine it with the user's prompt: "${userPrompt}". 
     Describe what you see in the drawing and create an enhanced, detailed prompt for image generation that combines both the visual elements from the drawing and the user's text prompt. 
