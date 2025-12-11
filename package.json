@@ -18,6 +18,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "express-rate-limit": "^8.1.0",
-    "fs": "^0.0.1-security"
+    "form-data": "^4.0.4",
+    "fs": "^0.0.1-security",
+    "openai": "^6.8.0"
   }
 }

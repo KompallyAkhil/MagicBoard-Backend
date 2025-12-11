@@ -47,7 +47,6 @@ router.post("/", async (req, res) => {
     // Analyze the drawing and enhance the prompt using Gemini
     const enhancedPrompt = await analyzeDrawingForPrompt(base64Data, prompt);
 
-    // Generate image using Stability AI API (Core model - cheaper)
     const stabilityResponse = await axios.post(
       "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
       {
